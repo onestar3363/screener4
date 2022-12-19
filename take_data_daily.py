@@ -69,7 +69,7 @@ def getdata():
             df5w.to_sql(bticker,enginew, if_exists='replace')
         now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
         st.write('Last downloaded', index,ticker,now)
-        return(index,ticker,now)
+        return(index,bticker,now)
 lastindex=getdata()
 end = time.perf_counter() 
 st.write('Last downloaded', lastindex, 'Süre', end - start)
