@@ -53,7 +53,7 @@ def getdata():
         index += 1
         bsymbols1=pd.read_csv('hepsi.csv',header=None)
         bsymbols=bsymbols1.iloc[:,0].to_list()
-        for bticker[:,5] in bsymbols[:,5]:
+        for bticker[0:5] in bsymbols[0:5]:
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
             df=yf.download(bticker,period="1y")
