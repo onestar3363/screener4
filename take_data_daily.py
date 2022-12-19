@@ -53,7 +53,7 @@ def getdata():
         index += 1
         bsymbols1=pd.read_csv('hepsi.csv',header=None)
         bsymbols=bsymbols1.iloc[:,0].to_list()
-        for bticker in bsymbols:
+        for bticker[:,5] in bsymbols[:,5]:
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
             df=yf.download(bticker,period="1y")
@@ -68,7 +68,7 @@ def getdata():
             df5w=df4w.dropna()
             df5w.to_sql(bticker,enginew, if_exists='replace')
         now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
-        st.write('Last downloaded', index,ticker,now)
+        st.write('Last downloaded', index,bticker,now)
         return(index,bticker,now)
 lastindex=getdata()
 end = time.perf_counter() 
