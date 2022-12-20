@@ -27,7 +27,7 @@ def getdata():
     symbols1=pd.read_csv('csymbols.csv',header=None)
     symbols=symbols1.iloc[:,0].to_list()
     index = 0
-    fullnames=symbols1.iloc[:,1].to_list()
+    #fullnames=symbols1.iloc[:,1].to_list()
     engine=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
@@ -53,7 +53,8 @@ def getdata():
         index += 1
         bsymbols1=pd.read_csv('hepsi.csv',header=None)
         bsymbols=bsymbols1.iloc[:,0].to_list()
-        for bticker in bsymbols:
+        fullnames=bsymbols1.iloc[:,1].to_list()
+        for bticker,fullname in zip(bsymbols,fullnames):
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
             df=yf.download(bticker,period="1y")
@@ -338,7 +339,7 @@ adx_value2= st.sidebar.number_input('ADX Value_ust',min_value=10,value=60)
 h=st.sidebar.number_input('Geçmiş',value=1)
 h1=int(h)
 riskvalue=st.sidebar.number_input('Risk',min_value=1,value=1000)
-option3=st.sidebar.text_input('Ticker','Enter Ticker Name')
+option3=st.sidebar.text_input('Ticker','')
 fark=st.sidebar.number_input('Fark',min_value=1.0,value=5.0,step=0.5)
 st.header(option1 + option2)
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
