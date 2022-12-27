@@ -44,6 +44,7 @@ def getdata():
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
             df=yf.download(bticker,period="2y",interval="60m",auto_adjust=False)
+            df.index = pd.to_datetime(df.index)
             #df4=df3.reset_index()
             df2 = df.resample('4H').agg(ohlcv_dict)
             df3= df2.dropna(inplace=True)
