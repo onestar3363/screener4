@@ -28,45 +28,36 @@ def getdata():
     symbols=symbols1.iloc[:,0].to_list()
     index = 0
     #fullnames=symbols1.iloc[:,1].to_list()
-    engine=sqlalchemy.create_engine('sqlite:///günlük.db')
+    engine=sqlalchemy.create_engine('sqlite:///saatlik.db')
+    engined=sqlalchemy.create_engine('sqlite:///gunluk.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
-        #for ticker,fullname in zip(symbols,fullnames):
-            #index += 1
-            #try:
-            #    data2 = exchange.fetch_ohlcv(ticker, timeframe='1d',limit=250) #since=exchange.parse8601('2022-02-13T00:00:00Z'))
-            #    data3= exchange.fetch_ohlcv(ticker, timeframe='1w',limit=250)
-            #    st.write(f"⏳ {index,ticker} downloaded")
-            #except Exception as e:
-            #    print(e)
-            #else:
-            #    header = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume']
-            #    dfc = pd.DataFrame(data2, columns=header)
-            #    dfc['Date'] = pd.to_datetime(dfc['Date'],unit='ms')
-            #    dfc['Date'] = dfc['Date'].dt.strftime('%d-%m-%Y')
-            #    dfc.to_sql(fullname,engine, if_exists='replace')
-            #    dfc2 = pd.DataFrame(data3, columns=header)
-            #    dfc2['Date'] = pd.to_datetime(dfc2['Date'],unit='ms')
-            #    dfc2['Date'] = dfc2['Date'].dt.strftime('%d-%m-%Y')
-            #    dfc2.to_sql(fullname,enginew, if_exists='replace')
-
         index += 1
         bsymbols1=pd.read_csv('hepsi.csv',header=None)
         bsymbols=bsymbols1.iloc[:,0].to_list()        
-        for bticker in bsymbols:
+        for bticker in bsymbols[:5]:
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
-            df=yf.download(bticker,period="1y")
-            df2=df.drop('Adj Close', 1)
-            df3=df2.reset_index()
-            df4=df3.round(2)
-            df4.to_sql(bticker,engine, if_exists='replace')
-            dfw=yf.download(bticker,period="250wk",interval = "1wk")
-            df2w=dfw.drop('Adj Close', 1)
-            df3w=df2w.reset_index()
-            df4w=df3w.round(2)
-            df5w=df4w.dropna()
-            df5w.to_sql(bticker,enginew, if_exists='replace')
+            df=yf.download(bticker,period="2y",interval='1h',auto_adjust=True )
+            ohlcv_dict = {'Open': 'first',
+              'High': 'max',
+              'Low': 'min',
+              'Close': 'last',
+              'Volume': 'sum'
+             }
+            df2=df.round(2)
+            df3 = df.resample('4H').agg(ohlcv_dict)    
+            df4.dropna(inplace=True)
+            df5=df4.reset_index()
+            df5.to_sql(bticker,engine, if_exists='replace')
+            df3d = df2.resample('D').agg(ohlcv_dict)
+            df3d.dropna(inplace=True)
+            df4d=df3d.reset_index()
+            df4d.to_sql(bticker,engined, if_exists='replace')
+            df3w = df2.resample('W-FRI').agg(ohlcv_dict)
+            df3w.dropna(inplace=True)
+            df4w=df3w.reset_index()
+            df4w.to_sql(bticker,enginew, if_exists='replace')   
         now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
         st.write('Last downloaded', index,bticker,now)
         return(index,bticker,now)
