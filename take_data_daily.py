@@ -29,7 +29,7 @@ def getdata():
     index = 0
     #fullnames=symbols1.iloc[:,1].to_list()
     engineh=sqlalchemy.create_engine('sqlite:///saatlik.db')
-    engine=sqlalchemy.create_engine('sqlite:///günlük.db')
+    engined=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
         index += 1
