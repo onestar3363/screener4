@@ -183,15 +183,15 @@ def get_framelisth():
     np.seterr(divide='ignore', invalid='ignore')
     with st.empty():
         sira=0
-        for name,frame in zip(names,framelisth): 
-            if len(frame)>30:
-                MACDdecision(frame)
-                EMA_decision(frame)
-                ADX_decision(frame)
-                Supertrend(frame)
-                ATR_decision(frame)
-                Stochrsi_decision(frame)
-                Volume_decision(frame)
+        for name,frameh in zip(names,framelisth): 
+            if len(frameh)>30:
+                MACDdecision(frameh)
+                EMA_decision(frameh)
+                ADX_decision(frameh)
+                Supertrend(frameh)
+                ATR_decision(frameh)
+                Stochrsi_decision(frameh)
+                Volume_decision(frameh)
                 sira +=1
                 st.write('saatlik',sira,name)             
     return framelisth  
@@ -237,12 +237,15 @@ def get_framelistw():
     return framelistw        
 connection_url='sqlite:///günlük.db'
 connection_url2='sqlite:///haftalik.db'
+connection_url3='sqlite:///saatlik.db'
 engine= connect_engine(connection_url) 
-enginew= connect_enginew(connection_url2) 
+enginew= connect_enginew(connection_url2)
+engineh= connect_engine(connection_url3) 
 start = time.perf_counter()
 names=get_names()
-framelist=get_framelist() 
+framelist=get_framelist()
 framelistw=get_framelistw()
+framelisth=get_framelisth() 
 end = time.perf_counter()
 st.write(end - start)
 
