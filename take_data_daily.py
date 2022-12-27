@@ -29,7 +29,7 @@ def getdata():
     index = 0
     #fullnames=symbols1.iloc[:,1].to_list()
     engineh=sqlalchemy.create_engine('sqlite:///saatlik.db')
-    engined=sqlalchemy.create_engine('sqlite:///günlük.db')
+    engine=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
         index += 1
@@ -50,10 +50,10 @@ def getdata():
             df2=df.round(2)
             df3 = df2.resample('4H').agg(ohlcv_dict)    
             df3.dropna(inplace=True)
-            df3.to_sql(bticker,engine, if_exists='replace')
+            df3.to_sql(bticker,engineh, if_exists='replace')
             df3d = df2.resample('D').agg(ohlcv_dict)
             df3d.dropna(inplace=True)
-            df3d.to_sql(bticker,engined, if_exists='replace')
+            df3d.to_sql(bticker,engine, if_exists='replace')
             df3w = df2.resample('W-FRI').agg(ohlcv_dict)
             df3w.dropna(inplace=True)
             df3w.to_sql(bticker,enginew, if_exists='replace')
