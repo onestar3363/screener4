@@ -44,10 +44,10 @@ def getdata():
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
             df=yf.download(bticker,period="2y",interval="60m",auto_adjust=False)
+            #df4=df3.reset_index()
             df2 = df.resample('4H').agg(ohlcv_dict)
             df3= df2.dropna(inplace=True)
-            df4=df3.reset_index()
-            df4.to_sql(bticker,engine, if_exists='replace')
+            df3.to_sql(bticker,engine, if_exists='replace')
             #dfw=yf.download(bticker,period="250wk",interval = "1wk")
             df2w= df.resample('D').agg(ohlcv_dict)
             df3w= df2w.dropna(inplace=True)
