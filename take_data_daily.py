@@ -46,10 +46,10 @@ def getdata():
               'Volume': 'sum'
              }
             df2=df.round(2)
-            df3 = df.resample('4H').agg(ohlcv_dict)    
-            df4.dropna(inplace=True)
-            df5=df4.reset_index()
-            df5.to_sql(bticker,engine, if_exists='replace')
+            df3 = df2.resample('4H').agg(ohlcv_dict)    
+            df3.dropna(inplace=True)
+            df4=df3.reset_index()
+            df4.to_sql(bticker,engine, if_exists='replace')
             df3d = df2.resample('D').agg(ohlcv_dict)
             df3d.dropna(inplace=True)
             df4d=df3d.reset_index()
@@ -57,7 +57,7 @@ def getdata():
             df3w = df2.resample('W-FRI').agg(ohlcv_dict)
             df3w.dropna(inplace=True)
             df4w=df3w.reset_index()
-            df4w.to_sql(bticker,enginew, if_exists='replace')   
+            df4w.to_sql(bticker,enginew, if_exists='replace')  
         now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
         st.write('Last downloaded', index,bticker,now)
         return(index,bticker,now)
