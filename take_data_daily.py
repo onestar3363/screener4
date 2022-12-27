@@ -28,8 +28,8 @@ def getdata():
     symbols=symbols1.iloc[:,0].to_list()
     index = 0
     #fullnames=symbols1.iloc[:,1].to_list()
-    engine=sqlalchemy.create_engine('sqlite:///saatlik.db')
-    engined=sqlalchemy.create_engine('sqlite:///gunluk.db')
+    engineh=sqlalchemy.create_engine('sqlite:///saatlik.db')
+    engine=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
         index += 1
@@ -49,11 +49,11 @@ def getdata():
             df3 = df2.resample('4H').agg(ohlcv_dict)    
             df3.dropna(inplace=True)
             df4=df3.reset_index()
-            df4.to_sql(bticker,engine, if_exists='replace')
+            df4.to_sql(bticker,engineh, if_exists='replace')
             df3d = df2.resample('D').agg(ohlcv_dict)
             df3d.dropna(inplace=True)
             df4d=df3d.reset_index()
-            df4d.to_sql(bticker,engined, if_exists='replace')
+            df4d.to_sql(bticker,engine, if_exists='replace')
             df3w = df2.resample('W-FRI').agg(ohlcv_dict)
             df3w.dropna(inplace=True)
             df4w=df3w.reset_index()
@@ -176,6 +176,26 @@ def get_names():
     names = names.name.to_list()
     return names
     
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)
+def get_framelisth():
+    framelisth=[]
+    for name in names:
+        framelisth.append(pd.read_sql(f'SELECT Date,Close,Open,High,Low,Volume FROM "{name}"',engineh))    
+    np.seterr(divide='ignore', invalid='ignore')
+    with st.empty():
+        sira=0
+        for name,frame in zip(names,framelisth): 
+            if len(frame)>30:
+                MACDdecision(frame)
+                EMA_decision(frame)
+                ADX_decision(frame)
+                Supertrend(frame)
+                ATR_decision(frame)
+                Stochrsi_decision(frame)
+                Volume_decision(frame)
+                sira +=1
+                st.write('saatlik',sira,name)             
+    return framelisth  
 @st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)
 def get_framelist():
     framelist=[]
