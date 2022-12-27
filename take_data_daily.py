@@ -30,6 +30,12 @@ def getdata():
     #fullnames=symbols1.iloc[:,1].to_list()
     engine=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
+    ohlcv_dict = {'Open': 'first',
+                  'High': 'max',
+                  'Low': 'min',
+                  'Close': 'last',
+                  'Volume': 'sum'
+                 }    
     with st.empty():
         index += 1
         bsymbols1=pd.read_csv('hepsi.csv',header=None)
@@ -41,12 +47,6 @@ def getdata():
             df2=df.drop('Adj Close', 1)
             df3=df2.reset_index()
             df4=df3.round(2)
-            ohlcv_dict = {'Open': 'first',
-              'High': 'max',
-              'Low': 'min',
-              'Close': 'last',
-              'Volume': 'sum'
-             }
             df5 = df4.resample('4H').agg(ohlcv_dict)
             df6= df5.dropna(inplace=True)
             df6.to_sql(bticker,engine, if_exists='replace')
