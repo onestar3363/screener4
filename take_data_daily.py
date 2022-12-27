@@ -336,13 +336,16 @@ def expander(cond):
            col3, col4 = st.columns([1, 1])
            col3.write(frame[['Close','ATR%','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
            col4.write(framew[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-           col1, col2 = st.columns([1, 1])
+           col1, col2, col5 = st.columns([1, 1, 1])
            r=200
            fig=get_figures(frame,r)
            r=40
            figw=get_figures(framew,r)
+           r=600
+           figh=get_figures(frameh,r)
            col1.plotly_chart(fig,use_container_width=True)
            col2.plotly_chart(figw,use_container_width=True)
+           col5.plotly_chart(figh,use_container_width=True)
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('breakout','pullback','consolidating','week','EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
