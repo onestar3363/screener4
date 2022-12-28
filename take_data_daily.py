@@ -359,7 +359,7 @@ option3=st.sidebar.text_input('Ticker','')
 fark=st.sidebar.number_input('Fark',min_value=1.0,value=5.0,step=0.5)
 st.header(option1 + option2)
 indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
-for name, frame,framew in zip(names,framelist,framelistw): 
+for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw): 
     try:
         if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2:
         #and frame['RISK'].iloc[-1]<=riskvalue:
