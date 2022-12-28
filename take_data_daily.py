@@ -274,7 +274,7 @@ def get_figures(frame,r):
          opacity=0.7,
          mode='markers', marker=dict(size=3,color='green'), 
          name='Supertrend1'))
-    fig.add_trace(go.Scatter(x=frame['Date'].tail(r), 
+    fig.add_trace(go.Scatter(x=framew['Date'].tail(r), 
          y=framew['sup2'].tail(r),
          opacity=0.7,
          mode='markers', marker=dict(size=3,color='black'), 
