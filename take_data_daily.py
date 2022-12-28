@@ -360,7 +360,7 @@ def expander(cond):
            r=600
            figh=get_figures(frameh,r)
            col1.plotly_chart(fig,use_container_width=True)
-           col2.plotly_chart(figw,use_container_width=True)
+           #col2.plotly_chart(figw,use_container_width=True)
            col5.plotly_chart(figh,use_container_width=True)
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
@@ -433,7 +433,8 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    and (frame['Dec_EMA50'].iloc[-h1]=='Buy'and frame['Dec_EMA20'].iloc[-h1]=='Buy')\
                    and (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1])\
                    and frame['Dec_EMA200'].iloc[-h1]=='Buy'\
-                   and frame['Dec_MACD'].iloc[-h1]=='Buy':
+                   and frame['Dec_MACD'].iloc[-h1]=='Buy'\
+                   and frameh['Dec_EMA50'].iloc[-h1]=='Buy':
                    #and frame['Close'].iloc[-h1]<1.015*frame['sup2'].iloc[-h1]\
                    #and frame['MACD'].iloc[-h1]>frame['MACD'].iloc[-h1-1]\
                    #and frame['Close'].iloc[-h1]/frame['EMA20'].iloc[-h1]<1+(frame['ATR%'].iloc[-h1]/100)\
