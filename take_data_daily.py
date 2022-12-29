@@ -468,13 +468,12 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
             #or framew['Close'].iloc[-1]<framew['sup2'].iloc[-1] or framew['Close'].iloc[-1]<framew['sup4'].iloc[-1] or framew['Dec_MACD'].iloc[-1]=='Sell')):
             #(framew['Dec_EMA50'].iloc[-1]=='Sell'):
             #(framew['Trend MACD'].iloc[-1]=='Sell' or framew['Dec_EMA50'].iloc[-1]=='Sell'):
-                #if option2 == 'breakout':
-                #   #if (frame['Decision Super2'].iloc[-h1]=='Sell'\
-                #   #or frame['Decision Super3'].iloc[-h1]=='Sell')\
-                #   #and (frame['Dec_EMA50'].iloc[-h1]=='Sell' or frame['Dec_EMA20'].iloc[-h1]=='Sell') :
-                #   ##and (frame['Close'].iloc[-h]<frame['sup4'].iloc[-h] or frame['Close'].iloc[-h]<frame['sup6'].iloc[-h])\
-                #   #         sira +=1
-                #   #         expander('breakout')
+                if option2 == 'breakout':
+                   if (frame['Decision Super2'].iloc[-h1]=='Sell' or frame['EMA50_cross'].iloc[-h1]=='Sell'\
+                   or frame['Decision Super3'].iloc[-h1]=='Sell' or frame['EMA20_cross'].iloc[-h1]=='Sell')\
+                   and (frame['Dec_EMA50'].iloc[-h1]=='Sell' or frame['Dec_EMA20'].iloc[-h1]=='Sell') :
+                             sira +=1
+                             expander('breakout')
                 if option2 == 'week':
                    if (framew['Decision Super2'].iloc[-2]=='Sell' or framew['Decision Super3'].iloc[-2]=='Sell')\
                    and (framew['Dec_EMA50'].iloc[-2]=='Sell' or framew['Dec_EMA20'].iloc[-2]=='Sell')\
