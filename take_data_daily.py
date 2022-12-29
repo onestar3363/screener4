@@ -502,7 +502,7 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    if (frame['Consolidating2'].iloc[-h1]=='Yes' or frame['Consolidating3'].iloc[-h1]=='Yes')\
                    and frame['Dec_MACD'].iloc[-h1]=='Sell'\
                    and frame['Trend MACD'].iloc[-h1]=='Sell'\
-                   and frame['Close'].iloc[-h1]<frame['sup4'].iloc[-h1]\
+                   and frame['Close'].iloc[-h1]<frame['sup6'].iloc[-h1]\
                    and frame['Dec_EMA20'].iloc[-1]=='Sell':
                    #and frame['ADX'].iloc[-1]<frame['ADX'].iloc[-2]\
                    #and frame['Decision ADX'].iloc[-h]=='Buy':
