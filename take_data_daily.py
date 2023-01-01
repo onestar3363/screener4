@@ -392,7 +392,7 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    or frame['EMA20_cross'].iloc[-h1]=='Buy' or frame['EMA50_cross'].iloc[-h1]=='Buy'\
                    or frameh['EMA20_cross'].iloc[-h1]=='Buy' or frameh['EMA50_cross'].iloc[-h1]=='Buy')\
                    and frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]\
-                   and (frameh['Close'].iloc[-h1]>frameh['sup4'].iloc[-h1] or frameh['Close'].iloc[-h1]>frameh['sup6'].iloc[-h1]\
+                   and (frameh['Close'].iloc[-h1]>frameh['sup4'].iloc[-h1] or frameh['Close'].iloc[-h1]>frameh['sup6'].iloc[-h1])\
                    and (frame['Dec_EMA200'].iloc[-h1]=='Buy'):
                    #or frame['EMA50_cross'].iloc[-h1]=='Buy' or frame['EMA20_cross'].iloc[-h1]=='Buy'\
                    #and frame['Dec_MACD'].iloc[-1]=='Buy':
