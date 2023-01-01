@@ -390,9 +390,8 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    if (frame['Decision Super2'].iloc[-h1]=='Buy' or frame['Decision Super2'].iloc[-h1]=='Buy' or frame['Decision Super3'].iloc[-h1]=='Buy'\
                    or frame['EMA20_cross'].iloc[-h1]=='Buy' or frame['EMA50_cross'].iloc[-h1]=='Buy'\
                    or frameh['EMA20_cross'].iloc[-h1]=='Buy' or frameh['EMA50_cross'].iloc[-h1]=='Buy')\
-                   and frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]\
-                   and (frameh['Close'].iloc[-h1]>frameh['sup4'].iloc[-h1] or frameh['Close'].iloc[-h1]>frameh['sup6'].iloc[-h1])\
-                   and (frame['Dec_EMA200'].iloc[-h1]=='Buy'):
+                   and (frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1])\
+                   and (frameh['Close'].iloc[-h1]>frameh['sup4'].iloc[-h1] or frameh['Close'].iloc[-h1]>frameh['sup6'].iloc[-h1]):
                    #or frame['EMA50_cross'].iloc[-h1]=='Buy' or frame['EMA20_cross'].iloc[-h1]=='Buy'\
                    #and frame['Dec_MACD'].iloc[-1]=='Buy':
                    #and (frame['Dec_EMA200'].iloc[-h1]=='Buy')
@@ -420,8 +419,8 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    or frame['EMA50_cross'].iloc[-h1]=='Buy2' or frame['EMA20_cross'].iloc[-h1]=='Buy2' or frame['EMA200_cross'].iloc[-h1]=='Buy2')\
                    and (frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] and frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1])\
                    and (frame['Dec_EMA50'].iloc[-h1]=='Buy' or frame['Dec_EMA20'].iloc[-h1]=='Buy')\
-                   and frame['Dec_EMA200'].iloc[-h1]=='Buy'\
-                   and frameh['Close'].iloc[-h1]>frameh['sup6'].iloc[-h1]:
+                   and (frameh['Close'].iloc[-h1]>frameh['sup4'].iloc[-h1] or frameh['Close'].iloc[-h1]>frameh['sup6'].iloc[-h1])\
+                   and (frame['Close'].iloc[-h1]>frameh['sup4'].iloc[-h1] or frameh['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]):
                    #and (frameh['Dec_EMA50'].iloc[-h1]=='Buy' or frameh['Dec_EMA20'].iloc[-h1]=='Buy'):
                    #and frame['Close'].iloc[-h1]>frame['Close'].iloc[-h1-1]:
                    #and (frame['Dec_MACD'].iloc[-h1]=='Buy' or frame['Trend MACD'].iloc[-h1]=='Buy'):
