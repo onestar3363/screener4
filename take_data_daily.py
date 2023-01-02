@@ -351,7 +351,7 @@ def expander(cond):
            #col6, col3, col4 = st.columns([1, 1, 1])
            col3, col4 = st.columns([1, 1])
            col3.write(frameh[['Close','ATR%','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-           col4.write(frame[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+           col4.write(frame[['Close','ATR%','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
            #col6.write(frameh[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
            #col5, col1, col2 = st.columns([1, 1, 1])
            col5, col1 = st.columns([1, 1])
