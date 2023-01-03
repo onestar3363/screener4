@@ -63,7 +63,7 @@ def getdata():
 lastindex=getdata()
 end = time.perf_counter() 
 st.write('Last downloaded', lastindex, 'Süre', end - start)
-@st.cache(suppress_st_warning=True)
+
 def MACDdecision(df):
     df['MACD_diff']= ta.trend.macd_diff(df.Close)
     df['MACD']= ta.trend.macd(df.Close)
@@ -74,7 +74,7 @@ def MACDdecision(df):
     df.loc[(df.MACD_diff<0),'Dec_MACD']='Sell'
     df.loc[(df.MACD_diff.shift(1)<df.MACD_diff),'Trend MACD']='Buy'
     df.loc[(df.MACD_diff.shift(1)>df.MACD_diff),'Trend MACD']='Sell'
-@st.cache(suppress_st_warning=True)
+
 def EMA_decision(df):
 
     df['EMA20'] = ta.trend.ema_indicator(df.Close,window=20)
@@ -101,7 +101,7 @@ def EMA_decision(df):
     df.loc[((df.Close>=df.EMA200)& (df.Close.shift(1)<=df.EMA200.shift(1))), 'EMA200_cross'] = 'Buy'
     df.loc[((df.Close<=df.EMA200)& (df.Close.shift(1)>=df.EMA200.shift(1))), 'EMA200_cross'] = 'Sell'
 
-@st.cache(suppress_st_warning=True)
+
 def ADX_decision(df):
     df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
     #df['ADX']=pa.adx(high=df['High'],low=df['Low'],close=df['Close'],mamode='ema',append=True)['ADX_14']
@@ -113,7 +113,7 @@ def ADX_decision(df):
     #df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
     #df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
     
-@st.cache(suppress_st_warning=True)
+
 def Supertrend(df):
     df['sup']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERTd_10_1.0']
     df['sup2']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERT_10_1.0']
@@ -146,7 +146,7 @@ def Supertrend(df):
     df.loc[(df.sup4 == df.sup4.shift(1)), 'Consolidating2'] = 'Yes'
     df.loc[(df.sup6 == df.sup6.shift(1)), 'Consolidating3'] = 'Yes'
     
-@st.cache(suppress_st_warning=True)    
+   
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
@@ -162,7 +162,7 @@ def Stochrsi_decision(df):
      df['Stochrsi_k'] = ta.momentum.stochrsi_k(df.Close)
      #df.loc[(df.Stochrsi_k.shift(1)>0.8)&(df.Stochrsi_k<0.8),'DecStoch']='Sell'
         
-@st.cache(suppress_st_warning=True)  
+
 def Volume_decision(df):
     df['Volume_EMA']=ta.trend.ema_indicator(df.Volume,window=10)
 
@@ -176,6 +176,8 @@ def connect_enginew(url):
     enginew=sqlalchemy.create_engine(url) 
     return enginew
 start = time.perf_counter()
+
+@st.cache(suppress_st_warning=True)
 def get_names():
     names= pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',engine)
     names = names.name.to_list()
