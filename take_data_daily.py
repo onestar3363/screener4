@@ -177,7 +177,6 @@ def connect_enginew(url):
     return enginew
 start = time.perf_counter()
 
-@st.cache(suppress_st_warning=True)
 def get_names():
     names= pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',engine)
     names = names.name.to_list()
