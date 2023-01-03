@@ -63,6 +63,7 @@ def getdata():
 lastindex=getdata()
 end = time.perf_counter() 
 st.write('Last downloaded', lastindex, 'Süre', end - start)
+@st.cache(suppress_st_warning=True)
 def MACDdecision(df):
     df['MACD_diff']= ta.trend.macd_diff(df.Close)
     df['MACD']= ta.trend.macd(df.Close)
@@ -73,7 +74,7 @@ def MACDdecision(df):
     df.loc[(df.MACD_diff<0),'Dec_MACD']='Sell'
     df.loc[(df.MACD_diff.shift(1)<df.MACD_diff),'Trend MACD']='Buy'
     df.loc[(df.MACD_diff.shift(1)>df.MACD_diff),'Trend MACD']='Sell'
-
+@st.cache(suppress_st_warning=True)
 def EMA_decision(df):
 
     df['EMA20'] = ta.trend.ema_indicator(df.Close,window=20)
@@ -100,6 +101,7 @@ def EMA_decision(df):
     df.loc[((df.Close>=df.EMA200)& (df.Close.shift(1)<=df.EMA200.shift(1))), 'EMA200_cross'] = 'Buy'
     df.loc[((df.Close<=df.EMA200)& (df.Close.shift(1)>=df.EMA200.shift(1))), 'EMA200_cross'] = 'Sell'
 
+@st.cache(suppress_st_warning=True)
 def ADX_decision(df):
     df['ADX']= ta.trend.adx(df.High, df.Low, df.Close)
     #df['ADX']=pa.adx(high=df['High'],low=df['Low'],close=df['Close'],mamode='ema',append=True)['ADX_14']
@@ -110,7 +112,8 @@ def ADX_decision(df):
     df.loc[(df.ADX>df.ADX.shift(1)) ,'Decision ADX']='Buy'
     #df.loc[(df.DIOSQ>df.DIOSQ_EMA)& (df.DIOSQ.shift(1)<df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Buy'
     #df.loc[(df.DIOSQ<df.DIOSQ_EMA)& (df.DIOSQ.shift(1)>df.DIOSQ_EMA.shift(1)), 'Dec_DIOSQ'] = 'Sell'
-
+    
+@st.cache(suppress_st_warning=True)
 def Supertrend(df):
     df['sup']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERTd_10_1.0']
     df['sup2']=pa.supertrend(high=df['High'],low=df['Low'],close=df['Close'],length=10,multiplier=1.0)['SUPERT_10_1.0']
@@ -142,6 +145,8 @@ def Supertrend(df):
     df.loc[(df.sup2 == df.sup2.shift(1)), 'Consolidating'] = 'Yes'
     df.loc[(df.sup4 == df.sup4.shift(1)), 'Consolidating2'] = 'Yes'
     df.loc[(df.sup6 == df.sup6.shift(1)), 'Consolidating3'] = 'Yes'
+    
+@st.cache(suppress_st_warning=True)    
 def ATR_decision(df):
     df['ATR']= ta.volatility.average_true_range(df.High, df.Low, df.Close,window=10)
     df['ATR%'] = df['ATR']/df.Close*100
@@ -156,7 +161,8 @@ def Stochrsi_decision(df):
      df['Stochrsi_d'] = ta.momentum.stochrsi_d(df.Close)
      df['Stochrsi_k'] = ta.momentum.stochrsi_k(df.Close)
      #df.loc[(df.Stochrsi_k.shift(1)>0.8)&(df.Stochrsi_k<0.8),'DecStoch']='Sell'
-
+        
+@st.cache(suppress_st_warning=True)  
 def Volume_decision(df):
     df['Volume_EMA']=ta.trend.ema_indicator(df.Volume,window=10)
 
@@ -175,7 +181,7 @@ def get_names():
     names = names.name.to_list()
     return names
     
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=1)
 def get_framelisth():
     framelisth=[]
     for name in names:
@@ -190,12 +196,11 @@ def get_framelisth():
                 ADX_decision(frameh)
                 Supertrend(frameh)
                 ATR_decision(frameh)
-                Stochrsi_decision(frameh)
                 Volume_decision(frameh)
                 sira +=1
                 st.write('saatlik',sira,name)             
     return framelisth  
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=1)
 def get_framelist():
     framelist=[]
     for name in names:
@@ -210,12 +215,11 @@ def get_framelist():
                 ADX_decision(frame)
                 Supertrend(frame)
                 ATR_decision(frame)
-                Stochrsi_decision(frame)
                 Volume_decision(frame)
                 sira +=1
                 st.write('günlük',sira,name)             
     return framelist    
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=2)      
+@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=1)      
 def get_framelistw():
     framelistw=[]
     for name in names: 
@@ -230,7 +234,6 @@ def get_framelistw():
                 ADX_decision(framew)
                 Supertrend(framew)
                 ATR_decision(framew)
-                Stochrsi_decision(framew)
                 Volume_decision(framew)
                 sira +=1
                 st.write('haftalik',sira,name)              
