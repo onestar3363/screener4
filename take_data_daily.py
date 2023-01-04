@@ -420,18 +420,11 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
                             sira +=1
                             expander('pullback')
-                if option2 == 'week': 
-                   if (framew['Decision Super3'].iloc[-2]=='Buy' or framew['Decision Super2'].iloc[-2]=='Buy' or framew['Decision Super'].iloc[-2]=='Buy' )\
-                   and framew['Close'].iloc[-1]>framew['Close'].iloc[-2]\
-                   and (framew['Dec_EMA50'].iloc[-2]=='Buy' or framew['Dec_EMA20'].iloc[-2]=='Buy'):
-                   #and (frame['Dec_EMA200'].iloc[-h1]=='Buy')
-                   #and (frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1])\
-                            sira +=1
-                            expander('week breakout')   
+                            
                 if option2 == 'consolidating':             
                    if (frame['Consolidating'].iloc[-h1]=='Yes' and frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
                    and (frame['Dec_EMA50'].iloc[-h1]=='Buy'and frame['Dec_EMA20'].iloc[-h1]=='Buy')\
-                   and (frameh['Decision Super2'].iloc[-h1]=='Buy2' or frameh['Decision Super3'].iloc[-h1]=='Buy2'\
+                   and (frameh['Decision Super'].iloc[-h1]=='Buy2' or frameh['Decision Super2'].iloc[-h1]=='Buy2' or frameh['Decision Super3'].iloc[-h1]=='Buy2'\
                    or frameh['EMA20_cross'].iloc[-h1]=='Buy2' or frameh['EMA50_cross'].iloc[-h1]=='Buy2')\
                    and (frame['Close'].iloc[-h1]>frame['sup2'].iloc[-h1]>frame['sup4'].iloc[-h1]>frame['sup6'].iloc[-h1])\
                    and frame['Dec_EMA200'].iloc[-h1]=='Buy'\
@@ -448,6 +441,14 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    #and frame['Decision ADX'].iloc[-h]=='Buy':                    
                             sira +=1
                             expander('consolidating') 
+                if option2 == 'week': 
+                   if (framew['Decision Super3'].iloc[-2]=='Buy' or framew['Decision Super2'].iloc[-2]=='Buy' or framew['Decision Super'].iloc[-2]=='Buy' )\
+                   and framew['Close'].iloc[-1]>framew['Close'].iloc[-2]\
+                   and (framew['Dec_EMA50'].iloc[-2]=='Buy' or framew['Dec_EMA20'].iloc[-2]=='Buy'):
+                   #and (frame['Dec_EMA200'].iloc[-h1]=='Buy')
+                   #and (frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1])\
+                            sira +=1
+                            expander('week breakout')   
                    #elif (framew['Decision Super'].iloc[-2]=='Buy2' or framew['Decision Super2'].iloc[-2]=='Buy2' or framew['Decision Super3'].iloc[-2]=='Buy2'\
                    #or framew['EMA50_cross'].iloc[-2]=='Buy2' or framew['EMA20_cross'].iloc[-2]=='Buy2')\
                    #and (framew['Dec_EMA50'].iloc[-2]=='Buy' or framew['Dec_EMA20'].iloc[-2]=='Buy')\
