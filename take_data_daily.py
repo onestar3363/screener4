@@ -240,9 +240,9 @@ def get_framelistw():
                 sira +=1
                 st.write('haftalik',sira,name)              
     return framelistw        
+connection_url3='sqlite:///saatlik.db'
 connection_url='sqlite:///günlük.db'
 connection_url2='sqlite:///haftalik.db'
-connection_url3='sqlite:///saatlik.db'
 engine= connect_engine(connection_url) 
 enginew= connect_enginew(connection_url2)
 engineh= connect_engine(connection_url3) 
