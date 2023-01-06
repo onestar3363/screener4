@@ -36,7 +36,7 @@ def getdata():
         bsymbols1=pd.read_csv('hepsi.csv',header=None)
         bsymbols=bsymbols1.iloc[:,0].to_list()
         bnameslist = bsymbols1.iloc[:,1].to_list()
-        for bticker, bnames in zip (bsymbols,bnameslist):
+        for bticker, bnames in zip (bsymbols[:5],bnameslist[:5]):
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
             df=yf.download(bticker,period="2y",interval='1h',auto_adjust=True )
