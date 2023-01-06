@@ -385,7 +385,7 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    or frameh['Decision Super2'].iloc[-h1]=='Buy2' or frameh['Decision Super3'].iloc[-h1]=='Buy2'\
                    or frameh['EMA50_cross'].iloc[-h1]=='Buy2' or frameh['EMA50_cross'].iloc[-h1]=='Buy2')\
                    and (frameh['Close'].iloc[-h1]>frameh['sup4'].iloc[-h1] or frameh['Close'].iloc[-h1]>frameh['sup6'].iloc[-h1])\
-                   and (frame['Close'].iloc[-h1]>frameh['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]):
+                   and (frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]):
                             sira +=1
                             expander('pullback')
                             
@@ -442,11 +442,7 @@ for name, frame, frameh, framew in zip(names,framelist, framelisth, framelistw):
                    or frameh['Decision Super2'].iloc[-h1]=='Sell2' or frameh['Decision Super3'].iloc[-h1]=='Sell2'\
                    or frameh['EMA50_cross'].iloc[-h1]=='Sell2' or frameh['EMA50_cross'].iloc[-h1]=='Sell2')\
                    and (frameh['Close'].iloc[-h1]<frameh['sup4'].iloc[-h1] or frameh['Close'].iloc[-h1]<frameh['sup6'].iloc[-h1])\
-                   and (frame['Close'].iloc[-h1]<frameh['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]<frame['sup6'].iloc[-h1]):
-                   #and (frame['Dec_EMA50'].iloc[-h1]=='Sell' or frame['Dec_EMA20'].iloc[-h1]=='Sell')\
-                   #and frame['Close'].iloc[-h1-1]>frame['Close'].iloc[-h1]:
-                   #and frame['Dec_MACD'].iloc[-h1]=='Buy':
-                   #and (frame['Close'].iloc[-1]>frame['sup6'].iloc[-h] or frame['Close'].iloc[-1]>frame['sup4'].iloc[-1]):
+                   and (frame['Close'].iloc[-h1]<frame['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]<frame['sup6'].iloc[-h1]):
                             sira +=1
                             expander('pullback')
                 if option2 == 'week':
