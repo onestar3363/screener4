@@ -361,11 +361,11 @@ def expander(cond):
            #col6.write(frameh[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
            #col5, col1, col2 = st.columns([1, 1, 1])
            col5, col1 = st.columns([1, 1])
-           r=150
+           r=200
            fig=get_figures(frame,r)
            #r=40
            #figw=get_figures(framew,r)
-           r=50
+           r=600
            figh=get_figures(frameh,r)
            col1.plotly_chart(fig,use_container_width=True)
            #col2.plotly_chart(figw,use_container_width=True)
