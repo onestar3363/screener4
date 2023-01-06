@@ -248,9 +248,10 @@ enginew= connect_enginew(connection_url2)
 engineh= connect_engine(connection_url3) 
 start = time.perf_counter()
 names=get_names()
+framelisth=get_framelisth()
 framelist=get_framelist()
 framelistw=get_framelistw()
-framelisth=get_framelisth() 
+ 
 end = time.perf_counter()
 st.write(end - start)
 
