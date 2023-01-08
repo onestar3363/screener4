@@ -5,7 +5,6 @@ import ta
 import numpy as np
 import yfinance as yf
 import sqlalchemy
-import ccxt
 import time
 import pandas_ta as pa
 import os
@@ -22,12 +21,7 @@ def getdata():
         os.remove("günlük.db")
     elif os.path.exists("haftalik.db"):
         os.remove("haftalik.db")
-    exchange=ccxt.currencycom()
-    markets= exchange.load_markets()    
-    symbols1=pd.read_csv('csymbols.csv',header=None)
-    symbols=symbols1.iloc[:,0].to_list()
     index = 0
-    #fullnames=symbols1.iloc[:,1].to_list()
     engine=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
