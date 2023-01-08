@@ -28,7 +28,6 @@ def getdata():
     symbols=symbols1.iloc[:,0].to_list()
     index = 0
     #fullnames=symbols1.iloc[:,1].to_list()
-    engineh=sqlalchemy.create_engine('sqlite:///saatlik.db')
     engine=sqlalchemy.create_engine('sqlite:///günlük.db')
     enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
     with st.empty():
@@ -36,28 +35,20 @@ def getdata():
         bsymbols1=pd.read_csv('hepsi.csv',header=None)
         bsymbols=bsymbols1.iloc[:,0].to_list()
         bnameslist = bsymbols1.iloc[:,1].to_list()
-        for bticker, bnames in zip (bsymbols,bnameslist):
+        for bticker, bnames in zip (bsymbols[,5],bnameslist[,5]):
             st.write(f"⏳ {index,bticker} downloaded")
             index += 1
-            df=yf.download(bticker,period="1y",interval='1h',auto_adjust=True )
+            df=yf.download(bticker,period="1y",interval='1d',auto_adjust=True )
             ohlcv_dict = {'Open': 'first',
               'High': 'max',
               'Low': 'min',
               'Close': 'last',
               'Volume': 'sum'
              }
-            df.index = df.index.set_names(['Date'])
-            df.reset_index().rename(columns={df.index.name:'Date'})
-            df2=df.round(2)
-            df3 = df2.resample('4H').agg(ohlcv_dict)    
-            df3.dropna(inplace=True)
-            df3.to_sql(bnames,engineh, if_exists='replace')
-            df3d = df2.resample('D').agg(ohlcv_dict)
-            df3d.dropna(inplace=True)
-            df3d.to_sql(bnames,engine, if_exists='replace')
-            df3w = df2.resample('W-FRI').agg(ohlcv_dict)
-            df3w.dropna(inplace=True)
-            df3w.to_sql(bnames,enginew, if_exists='replace')
+            df.to_sql(bnames,engine, if_exists='replace')
+            df2w = df.resample('W-FRI').agg(ohlcv_dict)
+            df2w.dropna(inplace=True)
+            df2w.to_sql(bnames,enginew, if_exists='replace')
         now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
         st.write('Last downloaded', index,bticker,now)
         return(index,bticker,now)
@@ -182,26 +173,7 @@ def get_names():
     names= pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',engine)
     names = names.name.to_list()
     return names
-    
-@st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=1)
-def get_framelisth():
-    framelisth=[]
-    for name in names:
-        framelisth.append(pd.read_sql(f'SELECT Date,Close,Open,High,Low,Volume FROM "{name}"',engineh))    
-    np.seterr(divide='ignore', invalid='ignore')
-    with st.empty():
-        sira=0
-        for name,frameh in zip(names,framelisth): 
-            if len(frameh)>30:
-                MACDdecision(frameh)
-                EMA_decision(frameh)
-                ADX_decision(frameh)
-                Supertrend(frameh)
-                ATR_decision(frameh)
-                Volume_decision(frameh)
-                sira +=1
-                st.write('saatlik',sira,name)             
-    return framelisth  
+      
 @st.cache(hash_funcs={sqlalchemy.engine.base.Engine:id},suppress_st_warning=True,max_entries=1)
 def get_framelist():
     framelist=[]
@@ -240,15 +212,12 @@ def get_framelistw():
                 sira +=1
                 st.write('haftalik',sira,name)              
     return framelistw        
-connection_url3='sqlite:///saatlik.db'
 connection_url='sqlite:///günlük.db'
 connection_url2='sqlite:///haftalik.db'
 engine= connect_engine(connection_url) 
 enginew= connect_enginew(connection_url2)
-engineh= connect_engine(connection_url3) 
 start = time.perf_counter()
 names=get_names()
-framelisth=get_framelisth()
 framelist=get_framelist()
 framelistw=get_framelistw()
  
@@ -334,20 +303,18 @@ def expander(cond):
            #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
            #col6, col3, col4 = st.columns([1, 1, 1])
            col3, col4 = st.columns([1, 1])
-           col3.write(frameh[['Close','ATR%','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
-           col4.write(frame[['Close','ATR%','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+           col3.write(frame[['Close','ATR%','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
+           col4.write(framew[['Close','ATR%','ADX','EMA20_cross','EMA50_cross','Decision Super','Decision Super2','Decision Super3','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
            #col6.write(frameh[['Close','ATR%','ADX','Dec_EMA50','Dec_MACD','Trend MACD','MACD_diff']].tail(2))
            #col5, col1, col2 = st.columns([1, 1, 1])
-           col5, col1 = st.columns([1, 1])
+           col1, col2 = st.columns([1, 1])
            r=100
            fig=get_figures(frame,r)
-           #r=40
-           #figw=get_figures(framew,r)
-           r=300
-           figh=get_figures(frameh,r)
+           r=40
+           figw=get_figures(framew,r)
+           r=300      
            col1.plotly_chart(fig,use_container_width=True)
-           #col2.plotly_chart(figw,use_container_width=True)
-           col5.plotly_chart(figh,use_container_width=True)
+           col2.plotly_chart(figw,use_container_width=True)
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('breakout','pullback','consolidating','week','EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
