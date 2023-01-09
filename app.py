@@ -14,7 +14,7 @@ import base64
 import dataframes
 
 
-def app()
+def app():
 
     #st.set_page_config(layout="wide")
     st.title('Screener')
