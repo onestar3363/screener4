@@ -11,6 +11,10 @@ import plotly
 import plotly.graph_objs as go 
 import graph
 
+def get_names():
+    names= pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',engine)
+    names = names.name.to_list()
+    return names
 
 def strategy():
     for name, frame, framew in zip(names,framelist, framelistw): 
