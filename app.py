@@ -16,7 +16,7 @@ import dataframes
 @st.cache(suppress_st_warning=True)
 def app():
 
-    #st.set_page_config(layout="wide")
+    st.set_page_config(layout="wide")
     st.title('Screener')
     dataframes.getdata()
     start = time.perf_counter()
