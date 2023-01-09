@@ -4,7 +4,7 @@ import streamlit as st
 import dataframes
 
 
-def expander(cond):
+def expander(cond,sira):
        with st.expander(cond+' '+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))+'/ %wATR='+str(framew['ATR%'].iloc[-1].round(2))):
            #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
            #col6, col3, col4 = st.columns([1, 1, 1])
