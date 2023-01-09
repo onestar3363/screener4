@@ -15,7 +15,7 @@ import dataframes
 import strategies
 
 
-@st.cache(suppress_st_warning=True)
+#@st.cache(suppress_st_warning=True)
 def app():
 
     st.title('Screener')
