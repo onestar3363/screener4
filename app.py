@@ -14,7 +14,7 @@ import base64
 import getdata1
 import dataframes
 import strategies
-
+import graph
 
 if __name__ == '__main__':
 
@@ -40,5 +40,6 @@ if __name__ == '__main__':
     st.header(option1 + option2)
     indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
     strategies.strategy(adx_value,adx_value2,h1,option1,option2,option3,sira)
+    graph.expander(frame,r)
     
     
