@@ -26,6 +26,8 @@ if __name__ == '__main__':
     framelistw=dataframes.get_framelistw()
     end = time.perf_counter()
     st.write(end - start)
+    
+    names=dataframes.get_names()
     sira=0
     option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
     option2 = st.sidebar.selectbox("Which Indicator?", ('breakout','pullback','consolidating','week','EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
