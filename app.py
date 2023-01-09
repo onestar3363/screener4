@@ -21,8 +21,8 @@ if __name__ == '__main__':
     getdata1.getdata()
     connection_url='sqlite:///günlük.db'
     connection_url2='sqlite:///haftalik.db'
-    engine= connect_engine(connection_url) 
-    enginew= connect_enginew(connection_url2)
+    engine= dataframes.connect_engine(connection_url) 
+    enginew= dataframes.connect_enginew(connection_url2)
     start = time.perf_counter()
     names=get_names()
     framelist=get_framelist()
