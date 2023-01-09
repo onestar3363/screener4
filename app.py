@@ -11,16 +11,11 @@ import os
 import plotly
 import plotly.graph_objs as go 
 import base64
-import dataframes
+from dataframes import getdata
 import strategies
 
 
 st.title('Screener')
-connection_url='sqlite:///günlük.db'
-connection_url2='sqlite:///haftalik.db'
-engine= dataframes.connect_engine(connection_url) 
-enginew= dataframes.connect_enginew(connection_url2)
-names=dataframes.get_names()
 framelist=get_framelist()
 framelistw=get_framelistw()
 start = time.perf_counter()  
