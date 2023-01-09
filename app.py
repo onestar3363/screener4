@@ -13,10 +13,10 @@ import plotly.graph_objs as go
 import base64
 import dataframes
 
+st.set_page_config(layout="wide")
 @st.cache(suppress_st_warning=True)
 def app():
 
-    st.set_page_config(layout="wide")
     st.title('Screener')
     dataframes.getdata()
     start = time.perf_counter()
