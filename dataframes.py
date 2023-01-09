@@ -170,3 +170,4 @@ connection_url='sqlite:///günlük.db'
 connection_url2='sqlite:///haftalik.db'
 engine= connect_engine(connection_url) 
 enginew= connect_enginew(connection_url2)
+names=dataframes.get_names()
