@@ -12,7 +12,8 @@ import plotly.graph_objs as go
 import graph
 import dataframes
 
-engine=sqlalchemy.create_engine('sqlite:///günlük.db') 
+engine=sqlalchemy.create_engine('sqlite:///günlük.db')
+
 
 def get_names():
     names= pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',engine)
@@ -22,7 +23,7 @@ def get_names():
 names= get_names()
 
 def strategy():
-    for name, frame, framew in zip(names,framelist, framelistw): 
+    for name, frame, framew in zip(names,dataframes.framelist, framelistw): 
         try:
             if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2:
             #and frame['RISK'].iloc[-1]<=riskvalue:
