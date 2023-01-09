@@ -16,7 +16,7 @@ import strategies
 import graph
 
 
-
+st.set_page_config(layout="wide")
 @st.cache(suppress_st_warning=True)
 def getdata():
     if os.path.exists("günlük.db"):
