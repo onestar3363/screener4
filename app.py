@@ -16,15 +16,10 @@ import dataframes
 
 if __name__ == '__main__':
 
-    st.set_page_config(layout="wide")
+    #st.set_page_config(layout="wide")
     st.title('Screener')
     getdata1.getdata()
-    connection_url='sqlite:///günlük.db'
-    connection_url2='sqlite:///haftalik.db'
-    engine= dataframes.connect_engine(connection_url) 
-    enginew= dataframes.connect_enginew(connection_url2)
     start = time.perf_counter()
-    names=dataframes.get_names()
     framelist=dataframes.get_framelist()
     framelistw=dataframes.get_framelistw()
     end = time.perf_counter()
