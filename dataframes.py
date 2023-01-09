@@ -200,3 +200,4 @@ def get_framelistw():
                 sira +=1
                 st.write('haftalik',sira,name)              
     return framelistw
+names=get_names()
