@@ -22,7 +22,7 @@ if __name__ == '__main__':
     st.title('Screener')
     getdata1.getdata()
     start = time.perf_counter()
-    names=get_names()
+    names=dataframes.get_names()
     framelist=dataframes.get_framelist()
     framelistw=dataframes.get_framelistw()
     end = time.perf_counter()
