@@ -20,9 +20,9 @@ def app():
 
     st.title('Screener')
     dataframes.getdata()
-    start = time.perf_counter()
-    #framelist=dataframes.get_framelist()
-    #framelistw=dataframes.get_framelistw()
+    start = time.perf_counter()  
+    framelist=dataframes.get_framelist()
+    framelistw=dataframes.get_framelistw()
     end = time.perf_counter()
     st.write(end - start)
     
@@ -38,6 +38,6 @@ def app():
     fark=st.sidebar.number_input('Fark',min_value=1.0,value=5.0,step=0.5)
     st.header(option1 + option2)
     indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
-    strategies.strategy(adx_value,adx_value2,h1,option1,option2,option3,sira)
+    strategies.strategy(adx_value,adx_value2,h1,option1,option2,option3,sira,framelist,framelistw)
 if __name__ == "__main__":
     app()
