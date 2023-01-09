@@ -11,6 +11,8 @@ import plotly
 import plotly.graph_objs as go 
 import graph
 
+engine=sqlalchemy.create_engine('sqlite:///günlük.db') 
+
 def get_names():
     names= pd.read_sql('SELECT name FROM sqlite_master WHERE type="table"',engine)
     names = names.name.to_list()
