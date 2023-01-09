@@ -13,7 +13,7 @@ import plotly.graph_objs as go
 import base64
 import dataframes
 import strategies
-
+from dataframes import names
 
 st.title('Screener')
 dataframes.getdata()
