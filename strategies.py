@@ -16,6 +16,8 @@ def get_names():
     names = names.name.to_list()
     return names
 
+names= get_names()
+
 def strategy():
     for name, frame, framew in zip(names,framelist, framelistw): 
         try:
