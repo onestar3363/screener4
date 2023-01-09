@@ -24,9 +24,9 @@ if __name__ == '__main__':
     engine= dataframes.connect_engine(connection_url) 
     enginew= dataframes.connect_enginew(connection_url2)
     start = time.perf_counter()
-    names=get_names()
-    framelist=get_framelist()
-    framelistw=get_framelistw()
+    names=dataframes.get_names()
+    framelist=dataframes.get_framelist()
+    framelistw=dataframes.get_framelistw()
     end = time.perf_counter()
     st.write(end - start)
     
