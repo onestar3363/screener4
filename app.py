@@ -16,6 +16,7 @@ import dataframes
 import strategies
 import graph
 
+@st.cache(suppress_st_warning=True)
 if __name__ == '__main__':
 
     #st.set_page_config(layout="wide")
