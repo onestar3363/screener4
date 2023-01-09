@@ -3,13 +3,52 @@ import pandas as pd
 import sqlalchemy
 import ta
 import numpy as np
+import yfinance as yf
 import sqlalchemy
 import time
 import pandas_ta as pa
 import os
 import plotly
+import plotly.graph_objs as go 
 import base64
+import getdata1
+import dataframes
+import strategies
+import graph
 
+
+
+@st.cache(suppress_st_warning=True)
+def getdata():
+    if os.path.exists("günlük.db"):
+        os.remove("günlük.db")
+    elif os.path.exists("haftalik.db"):
+        os.remove("haftalik.db")
+    index = 0
+    engine=sqlalchemy.create_engine('sqlite:///günlük.db')
+    enginew=sqlalchemy.create_engine('sqlite:///haftalik.db')
+    with st.empty():
+        index += 1
+        bsymbols1=pd.read_csv('hepsi.csv',header=None)
+        bsymbols=bsymbols1.iloc[:,0].to_list()
+        bnameslist = bsymbols1.iloc[:,1].to_list()
+        for bticker, bnames in zip (bsymbols,bnameslist):
+            st.write(f"⏳ {index,bticker} downloaded")
+            index += 1
+            df=yf.download(bticker,period="1y",interval='1d',auto_adjust=True )
+            ohlcv_dict = {'Open': 'first',
+              'High': 'max',
+              'Low': 'min',
+              'Close': 'last',
+              'Volume': 'sum'
+             }
+            df.to_sql(bnames,engine, if_exists='replace')
+            df2w = df.resample('W-FRI').agg(ohlcv_dict)
+            df2w.dropna(inplace=True)
+            df2w.to_sql(bnames,enginew, if_exists='replace')
+        now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
+        st.write('Last downloaded', index,bticker,now)
+        return(index,bticker,now)
 
 def MACDdecision(df):
     df['MACD_diff']= ta.trend.macd_diff(df.Close)
