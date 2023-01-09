@@ -10,13 +10,13 @@ import os
 import plotly
 import plotly.graph_objs as go 
 import graph
-#import dataframes
+import dataframes
 
 engine=sqlalchemy.create_engine('sqlite:///günlük.db')
 
-#names= dataframes.get_names()
-#framelist=dataframes.get_framelist()
-#framelistw=dataframes.get_framelistw()
+names= dataframes.get_names()
+framelist=dataframes.get_framelist()
+framelistw=dataframes.get_framelistw()
 
 
 def strategy(adx_value,adx_value2,h1,option1,option2,option3,sira):
