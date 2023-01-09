@@ -41,6 +41,3 @@ if __name__ == '__main__':
             now=pd.Timestamp.now().strftime("%d-%m-%Y, %H:%M")
             st.write('Last downloaded', index,bticker,now)
             return(index,bticker,now)
-    lastindex=getdata()
-    end = time.perf_counter() 
-    st.write('Last downloaded', lastindex, 'Süre', end - sta
