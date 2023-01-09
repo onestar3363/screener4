@@ -14,7 +14,7 @@ import dataframes
 
 engine=sqlalchemy.create_engine('sqlite:///günlük.db')
 
-names= dataframes.get_names()
+#names= dataframes.get_names()
 framelist=dataframes.get_framelist()
 framelistw=dataframes.get_framelistw()
 
