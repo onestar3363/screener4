@@ -25,7 +25,7 @@ framelist=dataframes.get_framelist()
 framelistw=dataframes.get_framelistw()
 
 
-def strategy():
+def strategy(adx_value):
     for name, frame, framew in zip(names,framelist, framelistw): 
         try:
             if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2:
