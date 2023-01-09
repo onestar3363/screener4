@@ -14,6 +14,7 @@ import base64
 import getdata1
 import dataframes
 
+st.set_page_config(layout="wide")
 if __name__ == '__main__':
 
     #st.set_page_config(layout="wide")
