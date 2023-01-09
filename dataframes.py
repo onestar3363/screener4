@@ -8,11 +8,8 @@ import sqlalchemy
 import time
 import pandas_ta as pa
 import os
-import plotly
-import plotly.graph_objs as go 
 import base64
-import strategies
-import graph
+
 
 
 st.set_page_config(layout="wide")
