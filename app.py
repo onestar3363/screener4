@@ -17,7 +17,7 @@ import strategies
 
 st.title('Screener')
 dataframes.getdata()
-names=dataframes.getdata()
+names=dataframes.get_framelist()
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('breakout','pullback','consolidating','week','EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
