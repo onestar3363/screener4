@@ -165,4 +165,6 @@ def get_framelistw():
                 Volume_decision(framew)
                 sira +=1
                 st.write('haftalik',sira,name)              
-    return framelistw        
+    return framelistw
+connection_url='sqlite:///günlük.db'
+connection_url2='sqlite:///haftalik.db'
