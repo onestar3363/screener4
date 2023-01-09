@@ -14,7 +14,8 @@ import base64
 import dataframes
 
 
-if __name__ == '__main__':
+def app()
+
     #st.set_page_config(layout="wide")
     st.title('Screener')
     dataframes.getdata()
@@ -38,4 +39,5 @@ if __name__ == '__main__':
     indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
     strategies.strategy(adx_value,adx_value2,h1,option1,option2,option3,sira)
 
-    
+    if __name__ == "__main__":
+    app()
