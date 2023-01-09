@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     #st.set_page_config(layout="wide")
     st.title('Screener')
-    getdata1.getdata()
+    #getdata1.getdata()
     start = time.perf_counter()
     #framelist=dataframes.get_framelist()
     #framelistw=dataframes.get_framelistw()
