@@ -26,7 +26,7 @@ framelistw=dataframes.get_framelistw()
 
 
 def expander(option2,sira):
-       with st.expander(cond+' '+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))+'/ %wATR='+str(framew['ATR%'].iloc[-1].round(2))):
+       with st.expander(option2+' '+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))+'/ %wATR='+str(framew['ATR%'].iloc[-1].round(2))):
            #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
            #col6, col3, col4 = st.columns([1, 1, 1])
            col3, col4 = st.columns([1, 1])
@@ -60,7 +60,7 @@ def strategy(adx_value,adx_value2,h1,option1,option2,option3,sira):
                        or frame['EMA50_cross'].iloc[-h1]=='Buy' or frame['EMA50_cross'].iloc[-h1]=='Buy')\
                        and (frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]):
                                 sira +=1
-                                expander('breakout')
+                                expander(option2)
                                 
                     if option2 == 'pullback':  
                        if (frame['Decision Super2'].iloc[-h1]=='Buy2' or frame['Decision Super2'].iloc[-h1]=='Buy2' or frame['Decision Super3'].iloc[-h1]=='Buy2'\
