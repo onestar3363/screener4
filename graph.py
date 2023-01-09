@@ -1,5 +1,7 @@
 import plotly
 import plotly.graph_objs as go 
+import streamlit as st
+
 
 def get_figures(frame,r):
     fig = go.Figure()
