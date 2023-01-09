@@ -15,7 +15,7 @@ import dataframes
 
 
 if __name__ == '__main__':
-
+    @st.cache(suppress_st_warning=True)
     #st.set_page_config(layout="wide")
     st.title('Screener')
     dataframes.getdata()
