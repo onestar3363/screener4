@@ -127,7 +127,7 @@ def strategy(adx_value,adx_value2,h1,option1,option2,option3,sira):
         except Exception as e:
             st.write(name,e) 
         
- def expander(option2,sira):
+def expander(option2,sira):
        with st.expander(option2+' '+str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2))+'/ %wATR='+str(framew['ATR%'].iloc[-1].round(2))):
            #st.write(str(sira) +') '+ name+'/'+' RISK= '+str(frame['RISK'].iloc[-1].round(2))+'/ %ATR='+str(frame['ATR%'].iloc[-1].round(2)))
            #col6, col3, col4 = st.columns([1, 1, 1])
