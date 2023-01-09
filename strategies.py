@@ -35,7 +35,7 @@ def strategy(adx_value,adx_value2,h1,option1,option2,option3,sira):
                        or frame['EMA50_cross'].iloc[-h1]=='Buy' or frame['EMA50_cross'].iloc[-h1]=='Buy')\
                        and (frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]):
                                 sira +=1
-                                expander('breakout')
+                                graph.expander('breakout')
                                 
                     if option2 == 'pullback':  
                        if (frame['Decision Super2'].iloc[-h1]=='Buy2' or frame['Decision Super2'].iloc[-h1]=='Buy2' or frame['Decision Super3'].iloc[-h1]=='Buy2'\
