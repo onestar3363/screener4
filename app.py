@@ -22,8 +22,8 @@ if __name__ == '__main__':
     st.title('Screener')
     getdata1.getdata()
     start = time.perf_counter()
-    framelist=dataframes.get_framelist()
-    framelistw=dataframes.get_framelistw()
+    #framelist=dataframes.get_framelist()
+    #framelistw=dataframes.get_framelistw()
     end = time.perf_counter()
     st.write(end - start)
     
