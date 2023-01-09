@@ -17,11 +17,7 @@ if __name__ == '__main__':
 
     st.set_page_config(layout="wide")
     st.title('Screener')
-    start = time.perf_counter()
-    getdata()
-    lastindex=getdata1.getdata()
-    end = time.perf_counter() 
-    st.write('Last downloaded', lastindex, 'Süre', end - start)
+    getdata1.getdata()
     
     
     
