@@ -19,7 +19,7 @@ engine=sqlalchemy.create_engine('sqlite:///günlük.db')
 #framelistw=dataframes.get_framelistw()
 
 
-def strategy(adx_value,adx_value2,h1,option1,option2,option3,sira):
+def strategy(adx_value,adx_value2,h1,option1,option2,option3,sira,names,framelist,framelistw):
     for name, frame, framew in zip(names,framelist, framelistw): 
         try:
             if  len(frame)>30 and len(framew)>30 and frame['ADX'].iloc[-1]>=adx_value and frame['ADX'].iloc[-1]<=adx_value2:
