@@ -16,7 +16,13 @@ import strategies
 
 
 st.title('Screener')
-dataframes.getdata()
+connection_url='sqlite:///günlük.db'
+connection_url2='sqlite:///haftalik.db'
+engine= connect_engine(connection_url) 
+enginew= connect_enginew(connection_url2)
+names=get_names()
+framelist=get_framelist()
+framelistw=get_framelistw()
 start = time.perf_counter()  
 names=dataframes.get_names()
 framelist=dataframes.get_framelist()
