@@ -11,7 +11,7 @@ import os
 import plotly
 import plotly.graph_objs as go 
 import base64
-from dataframes import getdata
+from dataframes
 import strategies
 
 
