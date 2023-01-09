@@ -11,7 +11,7 @@ import os
 import plotly
 import plotly.graph_objs as go 
 import base64
-import getdata
+import getdata1
 
 if __name__ == '__main__':
 
@@ -19,7 +19,7 @@ if __name__ == '__main__':
     st.title('Screener')
     start = time.perf_counter()
     getdata()
-    lastindex=getdata.getdata()
+    lastindex=getdata1.getdata()
     end = time.perf_counter() 
     st.write('Last downloaded', lastindex, 'Süre', end - start)
     
