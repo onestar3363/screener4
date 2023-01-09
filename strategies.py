@@ -11,7 +11,7 @@ import plotly
 import plotly.graph_objs as go 
 import graph
 
-names=get_names()
+
 def strategy():
     for name, frame, framew in zip(names,framelist, framelistw): 
         try:
