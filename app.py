@@ -39,6 +39,6 @@ if __name__ == '__main__':
     fark=st.sidebar.number_input('Fark',min_value=1.0,value=5.0,step=0.5)
     st.header(option1 + option2)
     indices=['US500/USD_S&P 500_INDEX_US','EU50/EUR_Euro Stoxx 50_INDEX_DE','^N225','XU030.IS']
-    strategies.strategy()
+    strategies.strategy(adx_value)
     
     
