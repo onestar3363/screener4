@@ -12,6 +12,7 @@ import plotly
 import plotly.graph_objs as go 
 import base64
 import dataframes
+import strategies
 
 
 @st.cache(suppress_st_warning=True)
