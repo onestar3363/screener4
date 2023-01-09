@@ -13,10 +13,11 @@ import plotly.graph_objs as go
 import base64
 import dataframes
 import strategies
-from dataframes import names
+
 
 st.title('Screener')
 dataframes.getdata()
+names=dataframes.getdata()
 sira=0
 option1 = st.sidebar.selectbox("Buy or Sell",('Buy','Sell')) 
 option2 = st.sidebar.selectbox("Which Indicator?", ('breakout','pullback','consolidating','week','EMASUPER','Index','EMA50','Supertrend','EMA20','MACD','ADX','EMA200'))
