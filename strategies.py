@@ -41,14 +41,14 @@ def strategy(adx_value,adx_value2,h1,option1,option2,option3,sira):
                        or frame['EMA50_cross'].iloc[-h1]=='Buy' or frame['EMA50_cross'].iloc[-h1]=='Buy')\
                        and (frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]):
                                 sira +=1
-                                expander('breakout')
+                                expander()
                                 
                     if option2 == 'pullback':  
                        if (frame['Decision Super2'].iloc[-h1]=='Buy2' or frame['Decision Super2'].iloc[-h1]=='Buy2' or frame['Decision Super3'].iloc[-h1]=='Buy2'\
                        or frame['EMA50_cross'].iloc[-h1]=='Buy2' or frame['EMA50_cross'].iloc[-h1]=='Buy2' or frame['EMA200_cross'].iloc[-h1]=='Buy2')\
                        and (frame['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] or frame['Close'].iloc[-h1]>frame['sup6'].iloc[-h1]):
                                 sira +=1
-                                expander('pullback')
+                                expander()
                                 
                     if option2 == 'consolidating':             
                        if (frame['Consolidating'].iloc[-h1]=='Yes' and frame['Consolidating2'].iloc[-h1]=='Yes' and frame['Consolidating3'].iloc[-h1]=='Yes')\
@@ -57,7 +57,7 @@ def strategy(adx_value,adx_value2,h1,option1,option2,option3,sira):
                        and frame['Dec_EMA200'].iloc[-h1]=='Buy'\
                        and frame['Dec_MACD'].iloc[-h1]=='Buy':
                                 sira +=1
-                                expander('consolidating') 
+                                expander() 
                     if option2 == 'week': 
                        if (framew['Decision Super2'].iloc[-2]=='Buy' or framew['Decision Super3'].iloc[-2]=='Buy')\
                        and (framew['Close'].iloc[-h1]>frame['sup4'].iloc[-h1] or framew['Close'].iloc[-h1]>framew['sup6'].iloc[-h1]):
